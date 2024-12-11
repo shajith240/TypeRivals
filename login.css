@@ -1,0 +1,100 @@
+body {
+    background-color: var(--bg-color);
+    color: var(--main-color);
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.register, .login {
+    background-color: var(--input-bg);
+    padding: 20px;
+    border-radius: 10px;
+    width: 45%;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: var(--input-bg);
+    color: var(--main-color);
+    outline: none;
+}
+
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--button-bg);
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--button-hover-bg);
+}
+
+.social-login {
+    display: flex;
+    justify-content: space-between;
+}
+
+.social-login button {
+    width: 48%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--button-bg);
+    color: white;
+    cursor: pointer;
+}
+
+.social-login button:hover {
+    background-color: var(--button-hover-bg);
+}
+
+label {
+    display: flex;
+    align-items: center;
+}
+
+label input {
+    margin-right: 10px;
+}
+
+footer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+footer a {
+    color: var(--main-color);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

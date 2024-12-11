@@ -1,0 +1,126 @@
+:root {
+    --bg-color: #323437;
+    --main-color: #e2b714;
+    --caret-color: #e2b714;
+    --sub-color: #646669;
+    --text-color: #d1d0c5;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font);
+    transition: background 0.25s, transform 0.05s;
+    cursor: default;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: var(--bg-color);
+}
+
+#logo .icon {
+    font-size: 24px;
+    color: var(--main-color);
+}
+
+nav {
+    display: flex;
+    gap: 15px;
+}
+
+nav a.textButton {
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 5px 10px;
+    transition: color 0.25s;
+}
+
+nav a.textButton:hover {
+    color: var(--main-color);
+}
+
+.full-width {
+    width: 100%;
+}
+
+#auth {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    margin: 20px 0;
+}
+
+#auth input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid var(--sub-color);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    outline: none;
+    width: 200px;
+}
+
+#auth button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: var(--bg-color);
+    background-color: var(--main-color);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.25s;
+}
+
+#auth button:hover {
+    background-color: #d1a213;
+}
+
+#database {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+#database button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: var(--bg-color);
+    background-color: var(--main-color);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.25s;
+}
+
+#database button:hover {
+    background-color: #d1a213;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: var(--bg-color);
+}
+
+footer .left,
+footer .right {
+    display: flex;
+    gap: 15px;
+}
+
+footer .textButton {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: color 0.25s;
+}
+
+footer .textButton:hover {
+    color: var(--main-color);
+}

@@ -1,126 +1,105 @@
 :root {
     --bg-color: #323437;
-    --main-color: #e2b714;
+    --main-color: #DFB6B2;
     --caret-color: #e2b714;
     --sub-color: #646669;
     --text-color: #d1d0c5;
+    --light-color: rgba(255, 255, 255, 0.6);
+    --correct-color: #00ff00;
+    --error-color: #ff0000;
 }
 
 body {
     background-color: var(--bg-color);
-    color: var(--text-color);
+    color: var(--main-color);
     font-family: var(--font);
-    transition: background 0.25s, transform 0.05s;
-    cursor: default;
-}
-
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: var(--bg-color);
-}
-
-#logo .icon {
-    font-size: 24px;
-    color: var(--main-color);
-}
-
-nav {
-    display: flex;
-    gap: 15px;
-}
-
-nav a.textButton {
-    color: var(--text-color);
-    text-decoration: none;
-    padding: 5px 10px;
-    transition: color 0.25s;
-}
-
-nav a.textButton:hover {
-    color: var(--main-color);
-}
-
-.full-width {
-    width: 100%;
-}
-
-#auth {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    align-items: center;
-    margin: 20px 0;
-}
-
-#auth input {
-    padding: 10px;
-    font-size: 1rem;
-    border: 1px solid var(--sub-color);
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    outline: none;
-    width: 200px;
-}
-
-#auth button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    color: var(--bg-color);
-    background-color: var(--main-color);
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.25s;
-}
-
-#auth button:hover {
-    background-color: #d1a213;
-}
-
-#database {
-    display: flex;
     justify-content: center;
-    gap: 10px;
-    margin: 20px 0;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
 }
 
-#database button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    color: var(--bg-color);
-    background-color: var(--main-color);
+.content-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 0 1rem;
+}
+
+.typing-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    max-width: 700px;
+}
+
+#typingTest {
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#wordsInput {
+    padding: 10px;
+    width: 100%;
+    margin-top: 10px;
+    background-color: var(--input-bg);
+    color: var(--main-color);
+    border: 1px solid var(--sub-color);
+    border-radius: 5px;
+    outline: none;
+    font-size: 2rem;
+}
+
+#words {
+    margin: 20px auto;
+    padding: 10px;
+    background-color: var(--input-bg);
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+    font-size: 2rem;
+}
+
+#words span {
+    color: var(--light-color);
+}
+
+#words .correct {
+    color: var(--correct-color);
+}
+
+#words .error {
+    color: var(--error-color);
+}
+
+.textButton {
+    background: none;
     border: none;
+    color: var(--main-color);
     cursor: pointer;
-    transition: background-color 0.25s;
+    padding: 0;
+    font-size: inherit;
+    text-decoration: underline;
 }
 
-#database button:hover {
-    background-color: #d1a213;
+.textButton:hover {
+    color: var(--caret-color);
 }
 
 footer {
     display: flex;
     justify-content: space-between;
-    padding: 10px 20px;
+    width: 100%;
+    padding: 10px;
     background-color: var(--bg-color);
 }
-
-footer .left,
-footer .right {
-    display: flex;
-    gap: 15px;
-}
-
-footer .textButton {
-    background: none;
-    border: none;
-    color: var(--text-color);
-    cursor: pointer;
-    transition: color 0.25s;
-}
-
-footer .textButton:hover {
-    color: var(--main-color);
+.icon{
+    text-align: left;
 }

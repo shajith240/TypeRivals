@@ -1,48 +1,72 @@
+// scripts.js
+
 import { auth } from './firebaseConfig.js';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js";
 
-// Sign Up
-document.getElementById('signupButton').addEventListener('click', () => {
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            console.log('Signed Up Successfully!', userCredential.user);
-            alert('Signed Up Successfully!');
-            document.getElementById('logoutButton').style.display = 'block';
-        })
-        .catch((error) => {
-            console.error('Error Signing Up:', error);
-            alert('Error Signing Up: ' + error.message);
-        });
-});
+const apiKey = 'AIzaSyBZ9QKpBu02GN_n-rhE81oJ4f2w5p5vM1o';
+const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`;
 
-// Sign In
-document.getElementById('loginButton').addEventListener('click', () => {
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            console.log('Logged In Successfully!', userCredential.user);
-            alert('Logged In Successfully!');
-            document.getElementById('logoutButton').style.display = 'block';
+// Function to get random text from Gemini API
+function getRandomText() {
+    fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            contents: [
+                {
+                    parts: [
+                        {
+                            text: 'Generate random text for typing practice.'
+                        }
+                    ]
+                }
+            ]
         })
-        .catch((error) => {
-            console.error('Error Logging In:', error);
-            alert('Error Logging In: ' + error.message);
-        });
-});
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.candidates && data.candidates[0].content && data.candidates[0].content.parts) {
+            const randomText = data.candidates[0].content.parts[0].text;
+            displayText(randomText);
+        } else {
+            console.error('Error fetching text');
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
 
-// Sign Out
-document.getElementById('logoutButton').addEventListener('click', () => {
-    signOut(auth)
-        .then(() => {
-            console.log('Signed Out Successfully!');
-            alert('Signed Out Successfully!');
-            document.getElementById('logoutButton').style.display = 'none';
-        })
-        .catch((error) => {
-            console.error('Error Signing Out:', error);
-            alert('Error Signing Out: ' + error.message);
-        });
-});
+// Function to display the fetched random text
+function displayText(text) {
+    const textContainer = document.getElementById('words');
+    textContainer.innerHTML = '';
+    text.split('').forEach(char => {
+        const span = document.createElement('span');
+        span.textContent = char;
+        textContainer.appendChild(span);
+    });
+}
+
+// Function to handle typing input
+function handleTyping(event) {
+    const input = event.target.value;
+    const spans = document.querySelectorAll('#words span');
+
+    spans.forEach((span, index) => {
+        if (input[index] == null) {
+            span.classList.remove('correct', 'error');
+        } else if (input[index] === span.textContent) {
+            span.classList.add('correct');
+            span.classList.remove('error');
+        } else {
+            span.classList.add('error');
+            span.classList.remove('correct');
+        }
+    });
+}
+
+document.getElementById('wordsInput').addEventListener('input', handleTyping);
+
+// Function to handle user sign up
+document.getElementById('signupButton').add

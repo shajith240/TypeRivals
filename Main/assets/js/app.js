@@ -30,15 +30,14 @@ startBtn.addEventListener("click", () => {
   }
 
   testStarted = true;
-
   allowUserInput = true;
 });
 
 typingTest.addEventListener("click", () => {
-  initTest();
+  fetchTypingText(); // Fetch the typing text when the test starts
+  initTestWithFocus();
   setUpUserInput();
   setDuration();
-
   testStarted = true;
   allowUserInput = true;
 });
@@ -47,10 +46,69 @@ userInput.addEventListener("blur", () => allowUserInput && userInput.focus());
 
 userInput.addEventListener("input", startTest);
 
+async function fetchTypingText() {
+  const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent";
+  const API_KEY = "AIzaSyBZ9QKpBu02GN_n-rhE81oJ4f2w5p5vM1o";
+  const outputElement = document.querySelector(".test-text");
+
+  try {
+    console.log("Fetching typing text...");
+    console.log("API URL: ", API_URL);
+    console.log("API Key: ", API_KEY);
+    
+    const response = await fetch(API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${API_KEY}`
+      },
+      body: JSON.stringify({
+        prompt: "Generate text for typing practice",
+        max_output_tokens: 512, // Ensure you specify the number of tokens
+      }),
+    });
+
+    console.log("Response status: ", response.status);
+    
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error("Error response:", errorData);
+      throw new Error(`API error: ${errorData.error.message}`);
+    }
+
+    const data = await response.json();
+    console.log("API response data:", data);
+    
+    outputElement.textContent = data.choices[0].message.content.trim();
+    console.log("Fetched text: ", outputElement.textContent);
+    
+    // Initialize the test with the fetched text
+    initTest(outputElement.textContent);
+
+  } catch (error) {
+    console.error("Error fetching typing text:", error);
+    outputElement.textContent = "Error loading text. Please try again.";
+  }
+}
+
+
+
+function initTestWithFocus() {
+  console.log("Initializing test with focus...");
+  initTest();
+  startingTextContainer.classList.add("hide"); // Hide the starting text container
+  textOverlay.classList.add("hide"); // Hide the overlay text
+  userInput.focus(); // Focus on the input field
+}
+
+
+
 function setUpUserInput() {
   userInput.focus();
 
-  testLetters[currentIndex].classList.add("cursor");
+  if (testLetters && testLetters.length > 0) {
+    testLetters[currentIndex].classList.add("cursor");
+  }
 
   if (testConfig["test-by"] === "words") {
     updateNumberOfWords();
@@ -122,7 +180,7 @@ function wrongLetter() {
 }
 
 function handleCursor() {
-  testLetters.map((elm) => elm.classList.remove("cursor"));
+  testLetters.forEach((elm) => elm.classList.remove("cursor"));
   testLetters[currentIndex]?.classList.add("cursor");
 }
 
@@ -175,7 +233,7 @@ function createTestTypeInfo() {
   testBySpan.innerHTML = `test by ${testConfig["test-by"]}`;
   testTypeResultInfo.appendChild(testBySpan);
 
-  testConfig["include-to-test"].map((elm) => {
+  testConfig["include-to-test"].forEach((elm) => {
     const span = document.createElement("span");
     span.innerHTML = `include ${elm}`;
     testTypeResultInfo.appendChild(span);

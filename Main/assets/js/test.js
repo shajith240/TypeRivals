@@ -35,13 +35,14 @@ function handleTestConfigChange(e) {
 
 function setUpTestConfigurationContainer() {
   const timeWordConfigs = document.querySelectorAll(".time-word-config");
-  if (testConfig["test-by"] === "time") {
-    timeWordConfigs.forEach((elm) => elm.classList.add("time"));
-  } else {
-    timeWordConfigs.forEach((elm) => elm.classList.remove("time"));
+  if (timeWordConfigs && timeWordConfigs.length > 0) {
+    if (testConfig["test-by"] === "time") {
+      timeWordConfigs.forEach((elm) => elm.classList.add("time"));
+    } else {
+      timeWordConfigs.forEach((elm) => elm.classList.remove("time"));
+    }
   }
 }
-
 
 const typingTest = document.querySelector(".typing-test");
 const testContainer = document.querySelector(".test");
@@ -56,7 +57,9 @@ const letters = "abcdefghijklmnopqrstuvwxyz";
 let testWords = [];
 export let testLetters = [];
 
-export function initTest() {
+export function initTest(text) {
+  resetTestWordsAndLetters();
+
   testConfiguration.classList.add("hide");
   testResult.classList.remove("show");
 
@@ -68,14 +71,14 @@ export function initTest() {
   startingTextContainer.classList.add("hide");
 
   typingTest.classList.add("no-click");
-  testWords = generateTestText();
+  testWords = text && text.trim().length > 0 ? text.split(" ") : generateTestText();
 
   createWords();
 }
 
 function generateTestText() {
   const numberOfWords = decideNumberOfWords();
-  const includeToTest = testConfig["include-to-test"];
+  const includeToTest = testConfig["include-to-test"] || [];
   const words = [];
 
   for (let i = 0; i < numberOfWords; i++) {
@@ -84,23 +87,15 @@ function generateTestText() {
 
     for (let j = 0; j < wordLength; j++) {
       let randomLetter = letters[random(letters.length)];
-      if (random(8) === 4) {
-        word += randomLetter.toLocaleUpperCase();
-      } else {
-        word += randomLetter;
-      }
+      word += random(8) === 4 ? randomLetter.toLocaleUpperCase() : randomLetter;
     }
 
-    if (includeToTest.includes("punctuation")) {
-      if (random(8) % 2 === 0) {
-        word += punctuation[random(punctuation.length)];
-      }
+    if (includeToTest.includes("punctuation") && random(8) % 2 === 0) {
+      word += punctuation[random(punctuation.length)];
     }
 
-    if (includeToTest.includes("numbers")) {
-      if (random(8) % 2 === 0) {
-        word += " " + random(10);
-      }
+    if (includeToTest.includes("numbers") && random(8) % 2 === 0) {
+      word += " " + random(10);
     }
 
     words.push(word);
@@ -118,6 +113,8 @@ function createLetter(letter, parentContainer, i, j) {
 }
 
 function createWords() {
+  const fragment = document.createDocumentFragment();
+
   for (let i = 0; i < testWords.length; i++) {
     const wordDiv = document.createElement("div");
     wordDiv.id = i + 1;
@@ -131,8 +128,10 @@ function createWords() {
       createLetter(" ", wordDiv, i + 1, testWords[i].length + 1);
     }
 
-    testText.appendChild(wordDiv);
+    fragment.appendChild(wordDiv);
   }
+
+  testText.appendChild(fragment);
 }
 
 function decideNumberOfWords() {
@@ -142,10 +141,10 @@ function decideNumberOfWords() {
 }
 
 function random(limit) {
-  return Math.floor(Math.random() * limit);
+  return limit > 0 ? Math.floor(Math.random() * limit) : 0;
 }
 
-export function resetTestWordsAndLetters(params) {
+export function resetTestWordsAndLetters() {
   testWords = [];
   testLetters = [];
 }

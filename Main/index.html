@@ -1,221 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TypeRivals</title>
-    <link rel="stylesheet" href="./assets/css/styles.css" />
-    <link rel="shortcut icon" href="./assets/img/favicon.ico" type="image/x-icon" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-  </head>
-  <body>
-    <div class="container">
-      <!-- HEADER -->
-      <header>
-        <!-- Logo Section -->
-        <div class="logo">
-          <img id="logo" src="./assets/img/logo.svg" alt="TypeRivals logo" />
-          <h1 style="font-family:'Courier New', Courier, monospace">TypeRivals</h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TypeRivals</title>
+  <link rel="stylesheet" href="./assets/css/styles.css" />
+  <link rel="shortcut icon" href="./assets/img/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <div class="container">
+    <!-- HEADER -->
+    <header>
+      <div class="logo">
+        <img id="logo" src="./assets/img/logo.svg" alt="TypeRivals logo" />
+        <h1 style="font-family:'Courier New', Courier, monospace">TypeRivals</h1>
+      </div>
+      <nav>
+        <div id="startBtn" title="Start Test">
+          <a href="./index.html"><i class="fa-solid fa-keyboard"></i></a>
         </div>
-        
-        <nav>
-          <!-- <div id="startBtn" title="Start Test">
-            <a href="./index.html"><i class="fa-solid fa-keyboard"></i></a>
-          </div> -->
-          <div class="spacing"></div>
-          <div><a href="./TypeRivals/Leader_board/leader.html"><i class="fas fa-fw fa-crown" title="Leaderboard"></a></i></div>
-          <div><i class="fas fa-fw fa-history" title="About"></i></div>
-          <div><i class="fas fa-fw fa-cog" title="Settings"></i></div>
-          <div class="spacing"></div>
-          <div><i class="fas fa-fw fa-bell" title="Notifications"></i></div>
-          <div>
-            <a href="./TypeRivals/login/login.html">
-              <i class="fa-regular fa-user" title="Login"></i>
-            </a>
-          </div>
-        </nav>
-        <input type="text" name="user-input" id="userInput" placeholder="Start typing..." />
-      </header>
+        <div><i class="fas fa-fw fa-crown" title="Leaderboard"></i></div>
+        <div><i class="fas fa-fw fa-info" title="About"></i></div>
+        <div><i class="fas fa-fw fa-cog" title="Settings"></i></div>
+        <div class="spacing"></div>
+        <div><i class="fas fa-fw fa-bell" title="Notifications"></i></div>
+        <div>
+          <a href="./TypeRivals/login/login.html">
+            <i class="fa-regular fa-user" title="Login"></i>
+          </a>
+        </div>
+      </nav>
+      <input type="text" name="user-input" id="userInput" placeholder="Start typing..." />
+    </header>
 
-      <main>
-        <!-- RESULT SECTION -->
-        <div class="result-container">
-          <div class="test-config-result">
-            <!-- TEST CONFIGURATION -->
-            <div class="test-config">
-              <div class="config" id="config1">
-                <!-- <div class="button">
-                  <input type="checkbox" id="punctuation" name="include-to-test" value="punctuation" />
-                  <label for="punctuation">
-                    <i class="fa-solid fa-at"></i> Punctuation
-                  </label> -->
-                <!-- </div>
-                <div class="button">
-                  <input type="checkbox" id="numbers" name="include-to-test" value="numbers" />
-                  <label for="numbers">
-                    <i class="fa-solid fa-hashtag"></i> Numbers
-                  </label>
-                </div> -->
-              </div>
-              <div class="spelter"></div>
-              <div class="config" id="config2">
-                <div class="button">
-                  <input type="radio" id="time" name="test-by" value="time" checked />
-                  <label for="time">
-                    <i class="fa-solid fa-clock"></i> Time
-                  </label>
-                </div>
-                <div class="button">
-                  <input type="radio" id="words" name="test-by" value="words" />
-                  <label for="words">
-                    <i class="fa-solid fa-a"></i> Words
-                  </label>
-                </div>
-                <div class="button">
-                  <input type="radio" id="quote" name="test-by" value="quote" />
-                  <label for="quote">
-                    <i class="fas fa-fw fa-quote-left"></i> Quote
-                  </label>
-                </div>
-                <div class="button">
-                  <input type="radio" id="zen" name="test-by" value="zen" />
-                  <label for="zen">
-                    <i class="fas fa-fw fa-mountain"></i> Zen
-                  </label>
-                </div>
-                <div class="button">
-                  <input type="radio" id="custom" name="test-by" value="custom" />
-                  <label for="custom">
-                    <i class="fas fa-fw fa-wrench"></i> Custom
-                  </label>
-                </div>
-              </div>
-              <div class="spelter"></div>
-              <div class="config" id="config3">
-                <div class="time-word-config">
-                  <input type="radio" id="30" name="time-word-config" value="30" />
-                  <label for="30">30</label>
-                </div>
-                <div class="time-word-config">
-                  <input type="radio" id="60" name="time-word-config" value="60" checked />
-                  <label for="60">60</label>
-                </div>
-                <div class="time-word-config">
-                  <input type="radio" id="120" name="time-word-config" value="120" />
-                  <label for="120">120</label>
-                </div>
-              </div>
-              <div class="textButton" id="tools">
-                <i class="fas fa-fw fa-tools"></i>
-              </div>
-            </div>
-
-            <!-- TEST RESULTS -->
-            <div class="test-results">
-              <div class="col">
-                <div class="result big-text">
-                  <span class="result-head">WPM</span>
-                  <span class="result-value wpm">43</span>
-                </div>
-                <div class="result big-text">
-                  <span class="result-head">Accuracy</span>
-                  <span class="result-value acc">96%</span>
-                </div>
-              </div>
-              <div class="col">
-                <div class="result">
-                  <span class="result-head">Test Type</span>
-                  <span class="result-value test-type"></span>
-                </div>
-                <div class="result">
-                  <span class="result-head">Finished Time</span>
-                  <span class="result-value time">0:15</span>
-                </div>
-              </div>
-            </div>
-          </div>
+    <!-- MAIN CONTENT -->
+    <main>
+      <div class="test-config-result">
+        <!-- TEST CONFIGURATION -->
+        <div class="test-config">
+          <!-- Configurations -->
         </div>
 
-        <!-- TEST MODES NOTICE -->
-        <!-- <div id="testModesNotice">
-          <div class="textButton" commands="languages">
-            <i class="fas fa-globe-americas"></i>
-            English
-          </div>
-        </div> -->
-
-        <!-- TYPING CONTAINER -->
-        <div class="typing-container">
-          <!-- TYPING TEST AREA -->
-          <div class="typing-test">
-            <div class="time-word-info"></div>
-            <div class="test shadow">
-              <div class="overlay">
-                <i class="fa-solid fa-arrow-pointer"></i>
-                Click here to start typing
-              </div>
-              <div id="typing-text" class="test-text"></div>
-            </div>
-            <button id="restartTestButton" class="button">
-              <a href="./index.html">
-                <i class="fas fa-fw fa-redo-alt"></i>
-              </a>
-            </button>
-          </div>
+        <!-- TEST RESULTS -->
+        <div class="test-results">
+          <!-- Results -->
         </div>
-      </main>
+      </div>
 
-      <!-- FOOTER -->
-      <footer>
-        <div id="commandLineMobileButton">
-          <i class="fas fa-terminal"></i>
+      <!-- TEST MODES NOTICE -->
+      <div id="testModesNotice">
+        <div class="textButton" commands="languages">
+          <i class="fas fa-globe-americas"></i>
+          English
         </div>
-        <div class="leftright">
-            <a href="https://github.com/monkeytypegame/monkeytype" class="textButton" target="_blank">
-              <i class="fas fa-fw fa-code"></i>
-              <div class="text">GitHub</div>
-            </a>
-            <a href="https://www.discord.gg/monkeytype" class="textButton" target="_blank">
-              <i class="fab fa-fw fa-discord"></i>
-              <div class="text">Discord</div>
-            </a>
-            
-            <!-- <a href="#" class="textButton" target="_blank">
-              <i class="fas fa-fw fa-file-contract"></i>
-              <div class="text">Terms</div>
-            </a> -->
-            <!-- <a href="#" class="textButton" target="_blank">
-              <i class="fas fa-fw fa-shield-alt"></i>
-              <div class="text">Security</div>
-            </a> -->
-            <!-- <a href="#" class="textButton" target="_blank">
-              <i class="fas fa-fw fa-lock"></i>
-              <div class="text">Privacy</div>
-            </a> -->
-          </div>
-          <div class="right">
-            <button class="textButton" id="light-mode-toggle">
-              <i class="fas fa-moon"></i>
-              <div class="text" id="theme-text">Dark Mode</div>
-            </button>
-            <button class="textButton">
-              <i class="fas fa-fw fa-code-branch"></i>
-              <div class="text">v24.9.0</div>
-            </button>
-          </div>
-        </div>
-      </footer>
-    </div>
+      </div>
 
-    <!-- JavaScript Files -->
-    <script src="./assets/js/script.js"></script>
-    <script src="./assets/js/app.js" type="module"></script>
-    <script src="./assets/js/test.js" type="module"></script>
-  </body>
+      <!-- TYPING TEST AREA -->
+      <div class="typing-test">
+        <div class="time-word-info"></div>
+        <div class="test shadow">
+          <div class="overlay">
+            <i class="fa-solid fa-arrow-pointer"></i>
+            Click here to focus
+          </div>
+          <div id="typing-text" class="test-text"></div>
+        </div>
+        <button id="restartTestButton" class="button">
+          <a href="./index.html">
+            <i class="fas fa-fw fa-redo-alt"></i>
+          </a>
+        </button>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <!-- Footer content -->
+    </footer>
+  </div>
+
+  <!-- JavaScript Files -->
+  <script src="./assets/js/script.js"></script>
+  <script src="./assets/js/app.js" type="module"></script>
+  <script src="./assets/js/test.js" type="module"></script>
+</body>
 </html>

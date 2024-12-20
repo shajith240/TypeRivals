@@ -48,14 +48,11 @@ userInput.addEventListener("input", startTest);
 
 async function fetchTypingText() {
   const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent";
-  const API_KEY = "AIzaSyBZ9QKpBu02GN_n-rhE81oJ4f2w5p5vM1o";
+  const API_KEY = "YOUR_API_KEY"; // Replace with your actual API key
   const outputElement = document.querySelector(".test-text");
 
   try {
     console.log("Fetching typing text...");
-    console.log("API URL: ", API_URL);
-    console.log("API Key: ", API_KEY);
-    
     const response = await fetch(API_URL, {
       method: "POST",
       headers: {
@@ -64,12 +61,12 @@ async function fetchTypingText() {
       },
       body: JSON.stringify({
         prompt: "Generate text for typing practice",
-        max_output_tokens: 512, // Ensure you specify the number of tokens
+        max_output_tokens: 512
       }),
     });
 
-    console.log("Response status: ", response.status);
-    
+    console.log("Response status:", response.status);
+
     if (!response.ok) {
       const errorData = await response.json();
       console.error("Error response:", errorData);
@@ -78,10 +75,8 @@ async function fetchTypingText() {
 
     const data = await response.json();
     console.log("API response data:", data);
-    
     outputElement.textContent = data.choices[0].message.content.trim();
-    console.log("Fetched text: ", outputElement.textContent);
-    
+
     // Initialize the test with the fetched text
     initTest(outputElement.textContent);
 
@@ -91,8 +86,6 @@ async function fetchTypingText() {
   }
 }
 
-
-
 function initTestWithFocus() {
   console.log("Initializing test with focus...");
   initTest();
@@ -100,8 +93,6 @@ function initTestWithFocus() {
   textOverlay.classList.add("hide"); // Hide the overlay text
   userInput.focus(); // Focus on the input field
 }
-
-
 
 function setUpUserInput() {
   userInput.focus();

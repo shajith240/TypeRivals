@@ -409,6 +409,8 @@ main .typing-test .time-word-info {
 
 main .typing-test .test {
     position: relative;
+    min-height: 100px;
+    padding: 20px;
 }
 
 main .typing-test .test-text {
@@ -416,16 +418,20 @@ main .typing-test .test-text {
     display: flex;
     flex-wrap: wrap;
     user-select: none;
+    line-height: 1.5;
+    font-size: 1.2rem;
 }
 
 main .typing-test .test .word {
     display: flex;
+    margin-right: 0.5em;
 }
 
 main .typing-test .test .letter {
     min-width: 1ch;
     display: inline-block;
     border-left: 2px solid transparent;
+    position: relative;
 }
 
 main .typing-test .test .letter.last {
@@ -480,6 +486,9 @@ main .typing-test .test .overlay {
     cursor: pointer;
     z-index: 1;
     font-size: 18px;
+    top: 0;
+    background: rgba(0, 0, 0, 0.1);
+    z-index: 10;
 }
 
 main .typing-test .test .overlay.hide {
@@ -492,7 +501,7 @@ main .typing-test .test .overlay.hide {
     padding: 1em 2em;
     border: none;
     background-color: var(--background-color);
-    color: var(--sub-alt-color);
+    color: var (--sub-alt-color);
     transition: none;
 }
 
